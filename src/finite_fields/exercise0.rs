@@ -1,8 +1,6 @@
 use std::collections::HashSet;
 
-fn main() {
-    println!("hello world!");
-
+pub fn main() {
     let order: u32 = 11;
     // bn_128 curve: y2 = x3 + 3
     // (x, y) -> (4, 10)
@@ -30,7 +28,6 @@ fn main() {
             for root in y.into_iter() {
                 println!("({x}, {root})")
             }
-            // println!("");
         }
     }
 }
