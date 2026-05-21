@@ -1,8 +1,8 @@
 mod finite_fields;
+mod rarecode;
 
-use crate::finite_fields::exercise1;
+use crate::rarecode::slices::sliding_window;
 
 fn main() {
-    println!("Hello, zk :/");
-    exercise1::main();
+    sliding_window::main();
 }
