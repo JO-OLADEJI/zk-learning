@@ -1,8 +1,8 @@
 mod finite_fields;
 mod rarecode;
 
-use crate::rarecode::slices::sliding_window;
+use crate::rarecode::slices::reverse_middle;
 
 fn main() {
-    sliding_window::main();
+    reverse_middle::main();
 }
