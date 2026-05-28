@@ -1,0 +1,21 @@
+#define macro MAIN() = takes(0) returns(0) {
+    // function signature for 0x01 - ecrecover
+
+    // function signature for 0x02 - SHA256
+
+    // function signature for 0x03 - RIPEMD160
+
+    // function signature for 0x04 - identity
+
+    // function signature for 0x05 - MODEXP
+
+    // function signature for 0x06 - BN_ADD
+
+    // function signature for 0x07 - BN_MUL
+
+    // function signature for 0x08 - BN_pairing
+
+    // function signature for 0x09 - BLAKE2_F
+
+    // function signature for 0x09 - point evaluation
+}

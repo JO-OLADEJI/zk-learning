@@ -2,13 +2,14 @@ use ark_bn254::{Bn254, Fr, G1Projective, G2Projective};
 use ark_ec::{PrimeGroup, pairing::Pairing};
 
 pub fn main() {
-    if example1() {
-        println!("Pairings are equal!");
-    }
+    let g1 = G1Projective::generator();
 
-    if example2() {
-        println!("multiplicative pairings are equal");
-    }
+    let x = g1.clone();
+    let y = g1 * Fr::from(10);
+
+    println!("point x = {}", x);
+    println!("point y = {}", y);
+    println!("sum = {}", x + y);
 }
 
 fn example1() -> bool {
