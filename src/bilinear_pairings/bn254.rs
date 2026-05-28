@@ -3,13 +3,27 @@ use ark_ec::{PrimeGroup, pairing::Pairing};
 
 pub fn main() {
     let g1 = G1Projective::generator();
+    let g2 = G2Projective::generator();
 
-    let x = g1.clone();
-    let y = g1 * Fr::from(10);
+    let a_inv = -Fr::from(4);
+    let b = Fr::from(3);
+    let c = Fr::from(6);
+    let d = Fr::from(2);
 
-    println!("point x = {}", x);
-    println!("point y = {}", y);
-    println!("sum = {}", x + y);
+    let p = g1 * a_inv;
+    let q = g2 * b;
+    let r = g1 * c;
+    let s = g2 * d;
+
+    println!("p: {}", p);
+    println!("q: {}", q);
+    println!("r: {}", r);
+    println!("s: {}", s);
+
+    let e1 = Bn254::pairing(p, q);
+    let e2 = Bn254::pairing(r, s);
+
+    println!("pairing equal? - {}", e1 + e2);
 }
 
 fn example1() -> bool {
