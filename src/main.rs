@@ -1,8 +1,9 @@
 mod finite_fields;
 mod rarecode;
+mod bilinear_pairings;
 
-use crate::rarecode::slices::reverse_middle;
+use crate::bilinear_pairings::bn254;
 
 fn main() {
-    reverse_middle::main();
+    bn254::main();
 }
