@@ -1,46 +1,33 @@
 ### Arithmetic Circuit
-1. Create an arithmetic circuit that takes signals x₁, x₂, …, xₙ and is satisfied if at least one signal is 0.
+- Create an arithmetic circuit that takes signal $X_1, X_2, X_3, ..., X_n$ and is satisfied if at least one signal is $0$.
 
-solution:
---------------------- assert that their arithmetic multiplication results in 0
-0 === x₁ • x₂ • … • xₙ
+	- **Solution**:
+	- $$0 === X_1 • X_2 • X_3 … • X_n$$
 
-2. Create an arithmetic circuit that takes signals x₁, x₂, …, xₙ and is satsified if all signals are 1.
+- Create an arithmetic circuit that takes signals $X_1, X_2, X_3, …, X_n$ and is satisfied if all signals are $1$.
 
-solution
---------------------- constrain the signals to 0, 1
-0 === x₁(x₁ - 1)
-0 === x₂(x₂ - 1)
-0 === xₙ(xₙ - 1)
---------------------- assert that their arithmetic multiplication results in 1
-1 === x₁ • x₂ • … • xₙ
+	- **Solution**
+	- $$X_1 - 1 === 0; X_2 - 1 === 0; X_3 - 1 === 0; X_n - 1 === 0$$
+	- while I understand that there's a more compact way to write this circuit, I haven't gotten the answer because of the weird behaviors of finite field elements
 
-3. A bipartite graph is a graph that can be colored with two colors such that no two neighboring nodes share the same color. Devise an arithmetic circuit scheme to show you have a valid witness of a 2-coloring of a graph. Hint: the scheme in this tutorial needs to be adjusted before it will work with a 2-coloring.
+- A bipartite graph is a graph that can be colored with two colors such that no two neighboring nodes share the same color. Devise an arithmetic circuit scheme to show you have a valid witness of a 2-coloring of a graph. Hint: the scheme in this tutorial needs to be adjusted before it will work with a 2-coloring.
 
-solution
---------------------- base assumptions
-color A is represented by 0 (zero)
-color B is represented by 1 (one)
+	- **Solution**
+	- `let color_a = 0; color_b = 1` 
+	- Regions of the map are represented as $R_x$ i.e $R_1, R_2, R_3, ..., R_n$
+	- Constrain all regions of the map to be either `color_a` or `color_b`
+	- $$R_1(R_1 - 1) === 0; R_2(R_2 - 1) === 0; ...; R_n(R_n - 1) === 0$$
+	- Traverse the map and generate neighboring pairs such that $(R_x, R_y)$ share a border, then satisfy this constraint:
+	- $$R_x + R_y === 1$$
 
---------------------- assert that all regions of the map R₁, R₂, …, Rₙ are either color A or B
-R₁(R₁ - 1) === 0
-R₂(R₂ - 1) === 0
-…
-Rₙ(Rₙ - 1) === 0
+| A   | B   | A • B | A + B |                                       |
+| --- | --- | ----- | ----- | ------------------------------------- |
+| 0   | 0   | 0     | 0     |                                       |
+| 0   | 1   | 0     | 1     | <== distinct value for separate A & B |
+| 1   | 0   | 0     | 1     | <== distinct value for separate A & B |
+| 1   | 1   | 1     | 2     |                                       |
 
-|     A     |     B     |   A • B   |   A + B   |
-|-----------|-----------|-----------|-----------|
-|     0     |     0     |     0     |     0     |
-|     0     |     1     |     0     |     1     |   <== distinct value for separate A & B
-|     1     |     0     |     0     |     1     |   <== distinct value for separate A & B
-|     1     |     1     |     1     |     2     |
-
---------------------- traverse every region and generate neighbouring pairs such that (Rₓ, Rᵧ) share a border, then satisfy the constraint
-Rₓ + Rᵧ === 1
-
-If all constraints are satisfied, then we have our witness
-
-4. Create an arithmetic circuit that constrains k to be the maximum of x, y, or z. That is, k should be equal to x if x is the maximum value, and same for y and z.
+- Create an arithmetic circuit that constrains k to be the maximum of x, y, or z. That is, k should be equal to x if x is the maximum value, and same for y and z.
 
 5. Create an arithmetic circuit that takes signals x₁, x₂, …, xₙ, constrains them to be binary, and outputs 1 if at least one of the signals is 1. Hint: this is tricker than it looks. Consider combining what you learned in the first two problems and using the NOT gate.
 
