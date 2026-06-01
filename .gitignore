@@ -22,3 +22,9 @@ docs/
 
 # Editor
 .zed/
+
+# Circom
+*.r1cs
+*.sym
+*_cpp/
+*_js/
