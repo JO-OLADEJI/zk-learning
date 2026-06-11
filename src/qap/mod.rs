@@ -1,1 +1,1 @@
-pub mod walkthrough;
+pub mod solution;

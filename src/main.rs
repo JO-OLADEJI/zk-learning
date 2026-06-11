@@ -4,5 +4,5 @@ mod bilinear_pairings;
 mod qap;
 
 fn main() {
-    rarecode::playground::main();
+    qap::solution::main();
 }
