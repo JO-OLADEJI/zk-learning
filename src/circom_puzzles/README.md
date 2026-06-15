@@ -4,11 +4,10 @@ Exercises located at [RareSkill's GitHub](https://github.com/RareSkills/zero-kno
 ## Solved
 - [ ] Addition
 - [x] AllBinary
-- [ ] BinaryXY
 - [ ] Compile
 - [ ] Equality
 - [ ] ForLoop
-- [ ] FourBitBinary
+- [x] FourBitBinary
 - [ ] HasAtLeastOne
 - [x] IncreasingDistance
 - [ ] IntDiv
@@ -20,7 +19,7 @@ Exercises located at [RareSkill's GitHub](https://github.com/RareSkills/zero-kno
 - [ ] MultiAND
 - [x] MultiANDNoOut
 - [ ] MultiOR
-- [ ] MultiplyNoOut
+- [x] MultiplyNoOut
 - [ ] NotEqual
 - [ ] Poseidon
 - [ ] Power
