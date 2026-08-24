@@ -2,6 +2,7 @@ pragma circom 2.1.6;
 
 include "./array_selector.circom";
 include "./exclusive_branch.circom";
+include "../../../circomlib/circuits/gates.circom";
 include "../../../circomlib/circuits/comparators.circom";
 
 template ArraySwap(n) {
@@ -20,11 +21,13 @@ template ArraySwap(n) {
 
     signal uItem <== baseSelector.values[0];
     signal vItem <== baseSelector.values[1];
+    signal uEqualsV <== IsEqual()([u, v]);
 
     component uEQ[n];
     component vEQ[n];
     component neitherUV[n];
     component conditionals[n];
+    component shouldSubtractDuplicates[n]; // when u === v
 
     for (var i = 0; i < n; i++) {
         uEQ[i] = IsEqual();
@@ -38,8 +41,16 @@ template ArraySwap(n) {
         neitherUV[i] = IsZero();
         neitherUV[i].in <== uEQ[i].out + vEQ[i].out;
 
+        shouldSubtractDuplicates[i] = AND();
+        shouldSubtractDuplicates[i].a <== uEqualsV;
+        shouldSubtractDuplicates[i].b <== uEQ[i].out;
+
         conditionals[i] = ExclusiveBranch(3);
-        conditionals[i].conditions <== [uEQ[i].out, vEQ[i].out, neitherUV[i].out];
+        conditionals[i].conditions <== [
+            uEQ[i].out - shouldSubtractDuplicates[i].out,
+            vEQ[i].out,
+            neitherUV[i].out
+        ];
         conditionals[i].values <== [vItem, uItem, base[i]];
 
         swapped[i] === conditionals[i].out;
