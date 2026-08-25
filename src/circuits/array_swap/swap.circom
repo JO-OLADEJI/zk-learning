@@ -9,7 +9,7 @@ template ArraySwap(n) {
     signal input base[n];
     signal input u;
     signal input v;
-    signal input swapped[n];
+    signal output swapped[n];
 
     component baseSelector = ArraySelector(n, 2);
     baseSelector.indices[0] <== u;
@@ -53,8 +53,8 @@ template ArraySwap(n) {
         ];
         conditionals[i].values <== [vItem, uItem, base[i]];
 
-        swapped[i] === conditionals[i].out;
+        swapped[i] <== conditionals[i].out;
     }
 }
 
-component main = ArraySwap(10);
+// component main = ArraySwap(10);
